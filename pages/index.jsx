@@ -1,12 +1,10 @@
-import Head from 'next/head';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Home() {
-  return (
-    <div>
-      <Head>
-        <meta httpEquiv="refresh" content="0;url=https://www.earndeckshipping.com" />
-      </Head>
-      <p>Redirecting to Earndeck Shipping...</p>
-    </div>
-  );
+  const router = useRouter();
+  useEffect(() => {
+    router.replace('https://www.earndeckshipping.com');
+  }, []);
+  return <p>Redirecting...</p>;
 }

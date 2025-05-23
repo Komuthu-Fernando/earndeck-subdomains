@@ -9,18 +9,19 @@ export default function Header() {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
-  const subdomains = [
-    { name: 'Draft Survey', href: 'http://draft.earndeckshipping.com' },
-    { name: 'Container Survey', href: 'http://container.earndeckshipping.com' },
-    { name: 'Bunker Survey', href: 'http://bunker.earndeckshipping.com' },
-    { name: 'Hire Survey', href: 'http://hire.earndeckshipping.com' },
-    { name: 'Certification', href: 'http://certification.earndeckshipping.com' },
+  // Now pointing to internal subdirectory routes
+  const services = [
+    { name: 'Draft Survey', slug: 'draft' },
+    { name: 'Container Survey', slug: 'container' },
+    { name: 'Bunker Survey', slug: 'bunker' },
+    { name: 'Hire Survey', slug: 'hire' },
+    { name: 'Certification', slug: 'certification' },
   ];
 
   return (
-    <nav className="navbar">
+    <nav className="navbar flex justify-between items-center p-4 shadow-md bg-white z-50 relative">
       <div className="flex items-center">
-        <Link href="https://www.earndeckshipping.com">
+        <Link href="/">
           <Image
             src="/assets/logo.webp"
             alt="Earndeck Shipping Logo"
@@ -30,21 +31,31 @@ export default function Header() {
           />
         </Link>
       </div>
-      <div className="menu-toggle md:hidden" onClick={toggleMenu}>
+      <div className="md:hidden text-2xl cursor-pointer" onClick={toggleMenu}>
         {isOpen ? <FaTimes /> : <FaBars />}
       </div>
-      <ul className={`menu-items ${isOpen ? 'open' : ''} md:flex`}>
-        {subdomains.map((subdomain) => (
-          <li key={subdomain.name}>
-            <Link href={subdomain.href} onClick={closeMenu} className="flex items-center">
-              {subdomain.name}
+      <ul className={`absolute md:static top-full left-0 w-full md:w-auto md:flex gap-6 p-4 md:p-0 transition-all duration-300 ease-in-out ${isOpen ? 'block' : 'hidden'}`}>
+        {services.map((service) => (
+          <li key={service.slug}>
+            <Link
+              href={`/services/${service.slug}`}
+              onClick={closeMenu}
+              className="block py-2 px-4 text-white hover:text-[#6ec6e3]"
+            >
+              {service.name}
             </Link>
           </li>
         ))}
         <li>
-          <Link href="https://www.earndeckshipping.com" onClick={closeMenu} className="flex items-center">
+          <a
+            href="https://www.earndeckshipping.com"
+            onClick={closeMenu}
+            className="block py-2 px-4 text-white hover:text-[#6ec6e3]"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Main Site
-          </Link>
+          </a>
         </li>
       </ul>
     </nav>

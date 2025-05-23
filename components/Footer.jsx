@@ -90,7 +90,7 @@ export default function Footer() {
                 <FaTiktok className="text-2xl hover:text-[#76a6d8]" />
               </a>
             </div>
-            <div className="flex flex-col items-center mt-4">
+            {/* <div className="flex flex-col items-center mt-4">
               <p
                 className="text-sm cursor-pointer hover:text-[#76a6d8]"
                 onClick={() => openModal('Company Policy', companyPolicyContent)}
@@ -103,7 +103,7 @@ export default function Footer() {
               >
                 Terms & Conditions
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
